@@ -12,8 +12,8 @@ accelerate launch --config_file config.yaml \
     --pad_to_max_length \
     --num_beams 10 \
     --model_name_or_path "facebook/blenderbot-400M-distill" \
-    --per_device_train_batch_size 200 \
-    --per_device_eval_batch_size 100 \
+    --per_device_train_batch_size 100 \
+    --per_device_eval_batch_size 50 \
     --learning_rate 1e-6 \
     --weight_decay 0.0 \
     --num_train_epochs 1 \
