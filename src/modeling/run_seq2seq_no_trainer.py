@@ -382,16 +382,12 @@ def evaluate(args, model, metric, tokenizer, eval_dataloader, accelerator, max_l
     }
     samples_seen = 0
     for step, batch in enumerate(eval_dataloader):
-        accelerator.print(batch)
-        print(batch["input_ids"].shape)
-
         # had to run this 1 time at the start of eval loop else was giving device `caffe error`.
         # So, before directly using `model.generate` pass a batch with dummy data through the model
         if samples_seen == 0 and accelerator.distributed_type == DistributedType.FSDP:
             model(**batch)
         with torch.no_grad():
             unwrapped_model = accelerator.unwrap_model(model)
-            accelerator.print(unwrapped_model)
             generated_tokens = unwrapped_model.generate(
                 batch["input_ids"],
                 attention_mask=batch["attention_mask"],
