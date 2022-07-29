@@ -11,7 +11,7 @@ accelerate launch --config_file config.yaml \
     --n_val 1000 \
     --pad_to_max_length \
     --num_beams 10 \
-    --model_name_or_path "t5-small" \
+    --model_name_or_path "facebook/blenderbot-400M-distill" \
     --per_device_train_batch_size 200 \
     --per_device_eval_batch_size 100 \
     --learning_rate 1e-6 \
